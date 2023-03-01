@@ -7,6 +7,7 @@ import bookmarkfillimg from '../../assets/bookmark-solid.svg';
 import { UPDATE_EVENT_DATA } from '../../constants/apiEndPoints';
 import makeRequest from '../../utils/makeRequest';
 import circlecheck from '../../assets/circle-check-regular.svg';
+import PropTypes from 'prop-types';
 import './EventCard.css';
 
 function EventCard({ id, index, data }) {
@@ -70,7 +71,7 @@ function EventCard({ id, index, data }) {
             {register ? (
               <>
                 <div className="card-footer flex">
-                  <div className='flex'>
+                  <div className="flex">
                     <img className="icon" src={circlecheck} alt="registered" />
                     <p>REGISTERED</p>
                   </div>
@@ -90,7 +91,7 @@ function EventCard({ id, index, data }) {
             ) : !data.areSeatsAvailable ? (
               <>
                 <div className="card-footer flex">
-                  <div className='flex'>
+                  <div className="flex">
                     <img className="icon" src={crossimg} alt="registered" />
                     <p>NO SEATS AVAILABLE</p>
                   </div>
@@ -133,5 +134,20 @@ function EventCard({ id, index, data }) {
     </div>
   );
 }
+EventCard.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    index: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    venue: PropTypes.string.isRequired,
+    datetime: PropTypes.string.isRequired,
+    areSeatsAvailable: PropTypes.bool.isRequired,
+    isRegistered: PropTypes.bool.isRequired,
+    isBookmarked: PropTypes.bool.isRequired,
+    imgUrl: PropTypes.string.isRequired,
+    map: PropTypes.func,
+  }),
+};
 
 export default EventCard;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 import EventCard from '../EventCard';
 import './Home.css';
 
@@ -105,8 +106,19 @@ function Header({ event }) {
       <div className="card-content flex">
         {filterType !== 'All'
           ? event
-            .filter((singlevent) => singlevent[filterType] === true)
-            .map((eachEvent, index) => {
+              .filter((singlevent) => singlevent[filterType] === true)
+              .map((eachEvent, index) => {
+                return (
+                  <EventCard
+                    className="each-card-content"
+                    key={eachEvent.id}
+                    index={index}
+                    id={eachEvent.id}
+                    data={eachEvent}
+                  />
+                );
+              })
+          : event.map((eachEvent, index) => {
               return (
                 <EventCard
                   className="each-card-content"
@@ -116,21 +128,26 @@ function Header({ event }) {
                   data={eachEvent}
                 />
               );
-            })
-          : event.map((eachEvent, index) => {
-            return (
-              <EventCard
-                className="each-card-content"
-                key={eachEvent.id}
-                index={index}
-                id={eachEvent.id}
-                data={eachEvent}
-              />
-            );
-          })}
+            })}
       </div>
     </div>
   );
 }
+
+Header.propTypes = {
+  event: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    venue: PropTypes.string.isRequired,
+    datetime: PropTypes.string.isRequired,
+    areSeatsAvailable: PropTypes.bool.isRequired,
+    isRegistered: PropTypes.bool.isRequired,
+    isBookmarked: PropTypes.bool.isRequired,
+    imgUrl: PropTypes.string.isRequired,
+    map: PropTypes.func,
+    filter: PropTypes.func,
+  }),
+};
 
 export default Header;
