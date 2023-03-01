@@ -1,0 +1,37 @@
+
+
+  .card-container .card{
+    background:#fff;
+    text-align: center;
+    width:28rem;
+    box-shadow: 0 .3rem .5rem rgba(0,0,0,.3);
+    border-radius: 20px;
+  }
+  
+ .card-container .card img{
+    height:20rem;
+    width:100%;
+    margin: -4px;
+    padding: 0;
+  }
+  
+
+  
+.card-container .card p{
+    font-size: 1rem;
+     display: -webkit-box;
+     background: black;
+     color: white;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+.icon {
+    height: 20px !important;
+
+    width: 20px !important;
+}
+.bookmark-register {
+    justify-content: space-between;
+}

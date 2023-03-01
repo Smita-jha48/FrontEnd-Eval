@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import {} from './pages';
+import { HomePage, Error, PageNotFound } from './pages';
 import './constants/variable.css';
 
 function App() {
