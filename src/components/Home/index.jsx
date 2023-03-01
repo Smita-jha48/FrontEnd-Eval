@@ -14,11 +14,17 @@ function Header({ event }) {
     <div className="container">
       <div className="header">
         <div className="filter">
-          <div className="flex">
-            <FontAwesomeIcon icon={faFilter} />
-            <div>FILTER</div>
-            <div>
-              <FontAwesomeIcon onClick={handleClick} icon={faAngleUp} />
+          <div className="topbar flex">
+            <div className="filter-section">
+              <div className="flex sub-filter-section">
+                <div>
+                  <FontAwesomeIcon icon={faFilter} />
+                </div>
+                <div>FILTER</div>
+                <div>
+                  <FontAwesomeIcon onClick={handleClick} icon={faAngleUp} />
+                </div>
+              </div>
 
               {toggle ? (
                 <ul className="list-group">
@@ -87,7 +93,7 @@ function Header({ event }) {
               <input
                 type="text"
                 className="searchTerm"
-                placeholder="What are you looking for?"
+                placeholder="Event Name"
               />
               <button type="submit" className="searchButton">
                 <i className="fa fa-search"></i>
@@ -97,22 +103,10 @@ function Header({ event }) {
         </div>
       </div>
       <div className="card-content flex">
-        {
-          filterType !== 'All' ? 
-            (event
-              .filter((singlevent) => singlevent[filterType] === true)
-              .map((eachEvent, index) => {
-                return (
-                  <EventCard
-                    className="each-card-content"
-                    key={eachEvent.id}
-                    index={index}
-                    id={eachEvent.id}
-                    data={eachEvent}
-                  />
-                );
-              }))
-            : (event.map((eachEvent, index) => {
+        {filterType !== 'All'
+          ? event
+            .filter((singlevent) => singlevent[filterType] === true)
+            .map((eachEvent, index) => {
               return (
                 <EventCard
                   className="each-card-content"
@@ -122,8 +116,18 @@ function Header({ event }) {
                   data={eachEvent}
                 />
               );
-            }))
-        }
+            })
+          : event.map((eachEvent, index) => {
+            return (
+              <EventCard
+                className="each-card-content"
+                key={eachEvent.id}
+                index={index}
+                id={eachEvent.id}
+                data={eachEvent}
+              />
+            );
+          })}
       </div>
     </div>
   );

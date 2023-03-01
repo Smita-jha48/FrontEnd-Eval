@@ -37,7 +37,6 @@ function EventCard({ id, index, data }) {
 
   const handleBookmark = async (id, index) => {
     try {
-      
       await makeRequest(
         UPDATE_EVENT_DATA(id),
         {
@@ -67,21 +66,22 @@ function EventCard({ id, index, data }) {
           <p className="description">{data.description}</p>
           <p>VENUE: {data.venue}</p>
           <p>DATE: {data.datetime}</p>
-          <div className="bookmark-register flex">
+          <div className="bookmark-register">
             {register ? (
               <>
-                <div className="card-footer">
-                  <div>
-                    <img src={circlecheck} alt="registered" />
+                <div className="card-footer flex">
+                  <div className='flex'>
+                    <img className="icon" src={circlecheck} alt="registered" />
                     <p>REGISTERED</p>
                   </div>
                   <img
+                    className="icon"
                     src={bookmark ? bookmarkimg : bookmarkfillimg}
                     alt="bookmarked"
                     onClick={() => handleBookmark(id, index)}
                   />
                 </div>
-                <div className="card-button">
+                <div className="card-button flex">
                   <button onClick={() => handleRegister(id, index)}>
                     Unregister
                   </button>
@@ -89,18 +89,21 @@ function EventCard({ id, index, data }) {
               </>
             ) : !data.areSeatsAvailable ? (
               <>
-                <div className="card-footer">
-                  <div>
-                    <img src={circlecheck} alt="registered" />
+                <div className="card-footer flex">
+                  <div className='flex'>
+                    <img className="icon" src={crossimg} alt="registered" />
                     <p>NO SEATS AVAILABLE</p>
                   </div>
-                  <img
-                    src={bookmark ? bookmarkimg : bookmarkfillimg}
-                    alt="bookmark"
-                    onClick={() => handleBookmark(id, index)}
-                  />
+                  <div>
+                    <img
+                      className="icon"
+                      src={bookmark ? bookmarkimg : bookmarkfillimg}
+                      alt="bookmark"
+                      onClick={() => handleBookmark(id, index)}
+                    />
+                  </div>
                 </div>
-                <div className="card-button">
+                <div className="card-button flex">
                   <button onClick={() => handleRegister(id, index)}>
                     Unregister
                   </button>
@@ -108,15 +111,16 @@ function EventCard({ id, index, data }) {
               </>
             ) : (
               <>
-                <div className="card-footer">
+                <div className="card-footer flex">
                   <div></div>
                   <img
+                    className="icon"
                     src={bookmark ? bookmarkimg : bookmarkfillimg}
                     alt="bookmark"
                     onClick={() => handleBookmark(id, index)}
                   />
                 </div>
-                <div className="card-button">
+                <div className="card-button flex">
                   <button onClick={() => handleRegister(id, index)}>
                     Register
                   </button>

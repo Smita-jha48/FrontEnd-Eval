@@ -5,22 +5,26 @@
     text-align: center;
     width:28rem;
     box-shadow: 0 .3rem .5rem rgba(0,0,0,.3);
-    border-radius: 20px;
   }
   
  .card-container .card img{
+   
     height:20rem;
     width:100%;
     margin: -4px;
     padding: 0;
   }
-  
+  .card-footer {
+    background: plum;
+    justify-content: space-between;
+    
+  }
 
   
 .card-container .card p{
     font-size: 1rem;
      display: -webkit-box;
-     background: black;
+     background: plum;
      color: white;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -28,10 +32,16 @@
   }
 
 .icon {
-    height: 20px !important;
-
-    width: 20px !important;
+    height: 50px !important;
+    margin-right: 10px !important;
+    margin-left: 10px !important;
+    width: 50px !important;
 }
 .bookmark-register {
     justify-content: space-between;
+}
+.card-button {
+    height: 80px;
+   justify-content: center;
+   font-size: 16px;
 }
