@@ -61,18 +61,18 @@ function SingleEventCard({ data }) {
   return (
     <div className='single-card-body'>
     <Header />
-    <div className="card-container">
-      <div className="card ">
-        <img className="card-img" src={data.imgUrl} alt="song" />
-        <div className="card-footer ">
-          <p className="event-name">{data.name}</p>
-          <p className="description">{data.description}</p>
+    <div className="card-container-single">
+      <div className="card-single">
+        <img className="card-img-single" src={data.imgUrl} alt="song" />
+        <div className="card-footer-single flex">
+          <p className="event-name-single">{data.name}</p>
+          <p className="description-single">{data.description}</p>
           <p>VENUE: {data.venue}</p>
           <p>DATE: {data.datetime}</p>
-          <div className="bookmark-register">
+          <div className="bookmark-register-single">
             {register ? (
               <>
-                <div className="card-footer flex">
+                <div className="card-subfooter-single flex">
                   <div className="flex">
                     <img className="icon" src={circlecheck} alt="registered" />
                     <p>REGISTERED</p>
@@ -84,15 +84,15 @@ function SingleEventCard({ data }) {
                     onClick={() => handleBookmark(data.id)}
                   />
                 </div>
-                <div className="card-button flex">
-                  <button onClick={() => handleRegister(data.id)}>
+                <div >
+                  <button className="card-button-single" onClick={() => handleRegister(data.id)}>
                     Unregister
                   </button>
                 </div>
               </>
             ) : !data.areSeatsAvailable ? (
               <>
-                <div className="card-footer flex">
+                <div className="card-subfooter-single flex">
                   <div className="flex">
                     <img className="icon" src={crossimg} alt="registered" />
                     <p>NO SEATS AVAILABLE</p>
@@ -106,15 +106,15 @@ function SingleEventCard({ data }) {
                     />
                   </div>
                 </div>
-                <div className="card-button flex">
-                  <button onClick={() => handleRegister(data.id)}>
+                <div >
+                  <button className="card-button-single" onClick={() => handleRegister(data.id)}>
                     Unregister
                   </button>
                 </div>
               </>
             ) : (
               <>
-                <div className="card-footer flex">
+                <div className="card-subfooter-single flex">
                   <div></div>
                   <img
                     className="icon"
@@ -123,8 +123,8 @@ function SingleEventCard({ data }) {
                     onClick={() => handleBookmark(data.id)}
                   />
                 </div>
-                <div className="card-button flex">
-                  <button onClick={() => handleRegister(data.id)}>
+                <div>
+                  <button className="card-button-single" onClick={() => handleRegister(data.id)}>
                     Register
                   </button>
                 </div>

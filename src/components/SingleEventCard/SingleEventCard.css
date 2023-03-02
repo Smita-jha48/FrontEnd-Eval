@@ -1,11 +1,43 @@
 .single-card-body{
-    height: 100vh;
+    height: 80vh;
     width: 100vw;
 }
 
-.card-container .card{
-  margin-inline: auto;
-  margin-top: 40px;
-   width: 40%;
-   height: 80%;
+.card-container-single .card-single{
+   margin-inline: auto;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   width: 60%;
+   height: 40%;
+}
+.card-footer-single {
+    color: white;
+ margin-top: 10px;
+ width: 100%;
+  background-color: plum;
+  flex-direction: column;
+  padding-inline: 10px;
+
+}
+
+.card-img-single{
+    height:30rem;
+    margin-bottom: -10px;
+    width:100%;
+  }
+.event-name-single {
+    color: white;
+    margin-inline: auto;
+}
+.bookmark-register-single{
+    width: 100%;
+}
+.card-subfooter-single {
+    justify-content: space-between;
+}
+.card-button-single {
+    margin-left: 40%;
+    margin-bottom: 10px;
+    width: 20%;
+    font-size: 1.5rem;
 }
