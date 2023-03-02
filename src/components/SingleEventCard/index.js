@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import bookmarkimg from '../../assets/bookmark-regular.svg';
 import crossimg from '../../assets/circle-xmark-regular.svg';
 import bookmarkfillimg from '../../assets/bookmark-solid.svg';
-import { UPDATE_EVENT_DATA } from '../../constants/apiEndPoints';
-import makeRequest from '../../utils/makeRequest';
 import circlecheck from '../../assets/circle-check-regular.svg';
-import PropTypes from 'prop-types';
-import './EventCard.css';
+import { UPDATE_EVENT_DATA } from '../../constants/apiEndPoints';
+import { useNavigate } from 'react-router-dom';
+import makeRequest from '../../utils/makeRequest';
+import Header from '../Header';
+import './SingleEventCard.css';
 
-function EventCard({ id, index, data, handleBookmarked, handleRegistered }) {
+function SingleEventCard({ data }) {
+    console.log(data);
   const navigate = useNavigate();
   const [register, setRegister] = useState(data.isRegistered);
   const [bookmark, setBookmark] = useState(data.isBookmarked);
-  const handleRegister = async (id, index) => {
+  const handleRegister = async (id) => {
     try {
-      console.log(register);
       await makeRequest(
         UPDATE_EVENT_DATA(id),
         {
@@ -25,7 +25,6 @@ function EventCard({ id, index, data, handleBookmarked, handleRegistered }) {
         },
         navigate
       );
-      handleRegistered(index);
       setRegister(!register);
     } catch (e) {
       const errorStatus = e.response?.status;
@@ -37,7 +36,7 @@ function EventCard({ id, index, data, handleBookmarked, handleRegistered }) {
     }
   };
 
-  const handleBookmark = async (id, index) => {
+  const handleBookmark = async (id) => {
     try {
       await makeRequest(
         UPDATE_EVENT_DATA(id),
@@ -48,7 +47,6 @@ function EventCard({ id, index, data, handleBookmarked, handleRegistered }) {
         },
         navigate
       );
-      handleBookmarked(index);
       setBookmark(!bookmark);
     } catch (e) {
       const errorStatus = e.response?.status;
@@ -60,19 +58,12 @@ function EventCard({ id, index, data, handleBookmarked, handleRegistered }) {
     }
   };
 
-  const handleSingleCard = (id) => {
-    navigate(`singlecard/${id}`);
-  };
-
   return (
+    <div className='single-card-body'>
+    <Header />
     <div className="card-container">
       <div className="card ">
-        <img
-          className="card-img"
-          src={data.imgUrl}
-          alt="song"
-          onClick={() => handleSingleCard(id)}
-        />
+        <img className="card-img" src={data.imgUrl} alt="song" />
         <div className="card-footer ">
           <p className="event-name">{data.name}</p>
           <p className="description">{data.description}</p>
@@ -84,17 +75,17 @@ function EventCard({ id, index, data, handleBookmarked, handleRegistered }) {
                 <div className="card-footer flex">
                   <div className="flex">
                     <img className="icon" src={circlecheck} alt="registered" />
-                    <p>UNREGISTERED</p>
+                    <p>REGISTERED</p>
                   </div>
                   <img
                     className="icon"
                     src={bookmark ? bookmarkfillimg : bookmarkimg}
                     alt="bookmarked"
-                    onClick={() => handleBookmark(id, index)}
+                    onClick={() => handleBookmark(data.id)}
                   />
                 </div>
                 <div className="card-button flex">
-                  <button onClick={() => handleRegister(id, index)}>
+                  <button onClick={() => handleRegister(data.id)}>
                     Unregister
                   </button>
                 </div>
@@ -111,9 +102,14 @@ function EventCard({ id, index, data, handleBookmarked, handleRegistered }) {
                       className="icon"
                       src={bookmark ? bookmarkfillimg : bookmarkimg}
                       alt="bookmark"
-                      onClick={() => handleBookmark(id, index)}
+                      onClick={() => handleBookmark(data.id)}
                     />
                   </div>
+                </div>
+                <div className="card-button flex">
+                  <button onClick={() => handleRegister(data.id)}>
+                    Unregister
+                  </button>
                 </div>
               </>
             ) : (
@@ -124,11 +120,11 @@ function EventCard({ id, index, data, handleBookmarked, handleRegistered }) {
                     className="icon"
                     src={bookmark ? bookmarkfillimg : bookmarkimg}
                     alt="bookmark"
-                    onClick={() => handleBookmark(id, index)}
+                    onClick={() => handleBookmark(data.id)}
                   />
                 </div>
                 <div className="card-button flex">
-                  <button onClick={() => handleRegister(id, index)}>
+                  <button onClick={() => handleRegister(data.id)}>
                     Register
                   </button>
                 </div>
@@ -138,7 +134,8 @@ function EventCard({ id, index, data, handleBookmarked, handleRegistered }) {
         </div>
       </div>
     </div>
+    </div>
   );
 }
 
-export default EventCard;
+export default SingleEventCard;

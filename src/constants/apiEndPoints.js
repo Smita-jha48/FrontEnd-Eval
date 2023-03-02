@@ -5,8 +5,8 @@ export const GET_EVENT_DATA = {
   method: 'get',
 };
 
-export const GET_SONG_LIKE = (songId) => ({
-  url: `api/records/${songId}/likes`,
+export const GET_EACH_EVENT = (id) => ({
+  url: `api/events/${id}`,
   method: 'get',
 });
 

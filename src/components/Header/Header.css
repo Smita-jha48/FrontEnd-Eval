@@ -1,12 +1,12 @@
 .Nav-Bar {
-    background-color: var(--accent-color-dark);
+    background-color: plum;
 
 }
 
 .Nav-Icon {
     font-family: 'Big Shoulders Inline Display', cursive;
     width: 600px;
-    color: #9B9999;
+    color: white;
     padding: 10px 10px;
     font-size: 2rem;
 }
